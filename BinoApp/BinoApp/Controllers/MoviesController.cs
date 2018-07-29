@@ -18,7 +18,10 @@ namespace BinoApp.Controllers
         public ActionResult Random()
         {
             var movie = new Movie() { Name = "Raazi" };
-            return View(movie);
+            //return View(movie);
+            //return Content("Hi there");
+            //return HttpNotFound();
+            return RedirectToAction("Index", "Home", new { page = 1, sortBy = "name" });
         }
     }
 }
