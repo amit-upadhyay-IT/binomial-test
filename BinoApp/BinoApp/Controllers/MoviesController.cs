@@ -22,7 +22,10 @@ namespace BinoApp.Controllers
         public ActionResult Random()
         {
             var movie = new Movie() { Name = "Raazi" };
-            return View(movie);
+            //return View(movie);
+            //return Content("Hi there");
+            //return HttpNotFound();
+            return RedirectToAction("Index", "Home", new { page = 1, sortBy = "name" });
         }
 
         // GET: /movies/edit/1 -> This is an example of the parameter embedded with the URL
