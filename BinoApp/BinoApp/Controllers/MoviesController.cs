@@ -10,9 +10,13 @@ namespace BinoApp.Controllers
     public class MoviesController : Controller
     {
         // GET: Movies
-        public ActionResult Index()
+        public ActionResult Index(int? pageIndex, string sortBy)
         {
-            return View();
+            if (! pageIndex.HasValue)
+                pageIndex = 1;
+            if (String.IsNullOrWhiteSpace(sortBy))
+                sortBy = "Name";
+            return Content(String.Format("pageIndex={0}&sortBy={1}", pageIndex, sortBy));
         }
 
         public ActionResult Random()
@@ -20,5 +24,22 @@ namespace BinoApp.Controllers
             var movie = new Movie() { Name = "Raazi" };
             return View(movie);
         }
+
+        // GET: /movies/edit/1 -> This is an example of the parameter embedded with the URL
+        // GET: /movies/edit?id=1 ->Again the same action will be called, this is example of query string
+        public ActionResult Edit(int movieId)
+        {
+            return Content("movieId = " + movieId);
+        }
+
+        /*
+        // GET: http://localhost:50914/movies/edit?movieId=1
+        // this will not work for /movies/edit/1, because the name of the parameter in our default route is id, not movieId.
+         public ActionResult Edit(int movieId)
+        {
+            return Content("movieId = " + movieId);
+        }
+        */
     }
 }
+ 
