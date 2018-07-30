@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BinoApp.ViewModels;
 
 namespace BinoApp.Controllers
 {
@@ -24,12 +25,25 @@ namespace BinoApp.Controllers
         public ActionResult Random()
         {
             var movie = new Movie() { Name = "Raazi" };
+
+            var customers = new List<Customer>()
+            {
+                new Customer() {Name = "Customer 1"},
+                new Customer() {Name = "Customer 2"}
+            };
+
+            var viewModel = new RandomMovieViewModel()
+            {
+                Movie = movie,
+                Customers = customers
+            };
+
+            return View(viewModel);  // this is the prefered way of passing data to views.
             /*
              * Other was of passing data could be:
              ViewData["Movie"] = "Raazi";  // access them in View the as @ViewData["Movie"]
              ViewBag.Movie = "Raazi";  // access value in View as @ViewBag.Movie
              * */
-            return View(movie);  // this is the prefered way of passing data to views.
             //return Content("Hi there");
             //return HttpNotFound();
             //return RedirectToAction("Index", "Home", new { page = 1, sortBy = "name" });
