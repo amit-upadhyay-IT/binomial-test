@@ -13,6 +13,15 @@ namespace BinoApp
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            // custom route, the more specefic route is written before the generic route
+            // we can add constraints in the url parameters and passing constrains in an anonymous object as 4th arg
+            routes.MapRoute(
+                "MoviesByReleaseDate",
+                "movies/released/{year}/{month}",
+                new { controller = "Movies", action = "ByReleaseDate" },
+                new { year = @"/d{4}", month = @"/d{4}"}
+                );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
