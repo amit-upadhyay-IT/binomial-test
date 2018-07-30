@@ -24,10 +24,15 @@ namespace BinoApp.Controllers
         public ActionResult Random()
         {
             var movie = new Movie() { Name = "Raazi" };
-            //return View(movie);
+            /*
+             * Other was of passing data could be:
+             ViewData["Movie"] = "Raazi";  // access them in View the as @ViewData["Movie"]
+             ViewBag.Movie = "Raazi";  // access value in View as @ViewBag.Movie
+             * */
+            return View(movie);  // this is the prefered way of passing data to views.
             //return Content("Hi there");
             //return HttpNotFound();
-            return RedirectToAction("Index", "Home", new { page = 1, sortBy = "name" });
+            //return RedirectToAction("Index", "Home", new { page = 1, sortBy = "name" });
         }
 
         // GET: Movies
