@@ -13,6 +13,9 @@ namespace BinoApp
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            // to enable attribute routing, call to below method is necessary
+            routes.MapMvcAttributeRoutes();
+
             // custom route, the more specefic route is written before the generic route
             // we can add constraints in the url parameters and passing constrains in an anonymous object as 4th arg
             routes.MapRoute(

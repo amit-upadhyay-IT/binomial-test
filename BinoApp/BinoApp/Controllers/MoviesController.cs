@@ -9,6 +9,13 @@ namespace BinoApp.Controllers
 {
     public class MoviesController : Controller
     {
+        [Route("movies/released/{year}/{month:regex(\\d{2}):range(1, 12)}")]
+        public ActionResult ByReleaseYear(int year, int month)
+        {
+            string res = "ByReleaseYear action " + "\n" + year + "/" + month;
+            return Content(res);
+        }
+
         public ActionResult ByReleaseDate(int year, int month)
         {
             return Content(year + "/" + month);
